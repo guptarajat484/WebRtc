@@ -1,8 +1,16 @@
 require('dotenv').config({path:'config/.env'})
 require('./config/connection')
+const cors=require('cors')
 const express =require('express')
 const authRouter=require('./router/authRouter')
+
 const app=express()
+
+const corsOptions={
+    origin:['http://localhost:3000']
+}
+
+app.use(cors(corsOptions))
 
 const port=process.env.PORT||3000
 

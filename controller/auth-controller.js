@@ -18,10 +18,11 @@ class AuthController {
     const hash = await hashService.hashOtp(data)
 
     try {
-      await otpServices.sendBySms(phone, otp)
+      //await otpServices.sendBySms(phone, otp)
       return res.send({
         hash: `${hash}.${expires}`,
         phone,
+        otp
       })
     } catch (err) {
       console.log(err)
@@ -45,6 +46,7 @@ class AuthController {
     const data = `${phone}.${otp}.${expires}`
     const isvalid = otpServices.verify_otp(hashedOtp, data)
     console.log(isvalid);
+
     if (!isvalid) {
     return res.status(400).send({ message: "Invalid OTP" })
     }
