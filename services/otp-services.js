@@ -7,6 +7,7 @@ const twillo=require('twilio')(smsSid,smsAuthToken,{
 const HashService=require('./hash-service')
 
 class OtpServices{
+    
     async generate_otp(){
         const otp=crypto.randomInt(100000,999999)
         console.log(otp)
